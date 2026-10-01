@@ -73,7 +73,12 @@
     <div id="status" class="status" hidden></div>
 
     <main class="workspace">
-        <article id="editor" class="editor-page" contenteditable="true" spellcheck="false" dir="auto">
+        <article id="editor"
+                 class="editor-page"
+                 contenteditable="true"
+                 spellcheck="false"
+                 dir="auto"
+                 data-import-url="@Url.Action("Import", "Editor")">
             <p dir="rtl">گزارش را اینجا بنویسید یا یک فایل DOCX وارد کنید...</p>
         </article>
     </main>
