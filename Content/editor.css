@@ -1,0 +1,59 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; font-family: Tahoma, Arial, sans-serif; background: #eef1f5; color: #20242a; }
+button, select, input { font: inherit; }
+
+.app-shell { min-height: 100vh; }
+.topbar {
+    min-height: 68px; padding: 10px 22px; background: #fff; border-bottom: 1px solid #d9dee7;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    position: sticky; top: 0; z-index: 20;
+}
+.topbar h1 { margin: 0; font-size: 18px; }
+.subtitle { font-size: 11px; color: #6b7280; margin-top: 3px; }
+
+.import-button, .toolbar-button {
+    display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+}
+.import-button {
+    background: #1f62d0; color: #fff; border-radius: 6px; padding: 9px 14px; font-size: 13px;
+}
+
+.toolbar {
+    background: #fff; border-bottom: 1px solid #d9dee7; padding: 7px 12px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 5px;
+    position: sticky; top: 68px; z-index: 19; box-shadow: 0 2px 8px rgba(0,0,0,.04);
+}
+.toolbar button, .toolbar select, .toolbar-button, .color-control {
+    min-height: 32px; border: 1px solid #d5dae2; border-radius: 4px; background: #fff;
+    padding: 5px 8px; color: #242932;
+}
+.toolbar button, .toolbar-button, .color-control { cursor: pointer; }
+.toolbar button:hover, .toolbar-button:hover { background: #f1f4f8; }
+.toolbar select { max-width: 150px; }
+.separator { width: 1px; height: 25px; background: #dfe3e8; margin: 0 3px; }
+.color-control { position: relative; padding-right: 31px; font-weight: 700; }
+.color-control input { position: absolute; right: 4px; top: 5px; width: 22px; height: 20px; border: 0; padding: 0; }
+
+.status { margin: 10px auto 0; width: min(210mm, calc(100% - 30px)); padding: 9px 12px; border-radius: 5px; font-size: 13px; background: #fff4ce; border: 1px solid #e8d58a; }
+.status.error { background: #fee9e7; border-color: #f3aaa4; }
+
+.workspace { padding: 28px 15px 70px; overflow: auto; }
+.editor-page {
+    width: 210mm; min-height: 297mm; margin: 0 auto; padding: 18mm 17mm;
+    background: #fff; box-shadow: 0 4px 22px rgba(0,0,0,.12);
+    outline: none; font-family: Tahoma, Arial, sans-serif; font-size: 12pt; line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+.editor-page p { margin: 0 0 .7em; min-height: 1em; }
+.editor-page img { max-width: 100%; height: auto; }
+.editor-page table, .word-table { width: 100%; border-collapse: collapse; margin: 8px 0; }
+.editor-page td, .editor-page th, .word-table td, .word-table th { border: 1px solid #444; padding: 4px 6px; vertical-align: top; }
+.editor-page td p, .editor-page th p { margin: 0; }
+.imported-docx { width: 100%; }
+
+@media (max-width: 900px) {
+    .editor-page { width: 100%; min-height: calc(100vh - 180px); padding: 30px 24px; }
+    .workspace { padding-left: 8px; padding-right: 8px; }
+    .topbar { position: static; }
+    .toolbar { top: 0; }
+}
