@@ -56,9 +56,13 @@
     }
 
     document.getElementById("tableBtn").addEventListener("click", function () {
-        var rows = Math.max(1, Math.min(20, parseInt(prompt("Rows:", "2"), 10) || 0));
-        var cols = Math.max(1, Math.min(20, parseInt(prompt("Columns:", "2"), 10) || 0));
-        if (!rows || !cols) return;
+        var rowsText = prompt("Rows:", "2");
+        if (rowsText === null) return;
+        var colsText = prompt("Columns:", "2");
+        if (colsText === null) return;
+
+        var rows = Math.max(1, Math.min(20, parseInt(rowsText, 10) || 1));
+        var cols = Math.max(1, Math.min(20, parseInt(colsText, 10) || 1));
 
         var html = '<table><tbody>';
         for (var r = 0; r < rows; r++) {
@@ -88,15 +92,19 @@
         if (!file) return;
 
         showStatus("Importing " + file.name + " ...", false);
+
         var data = new FormData();
         data.append("file", file);
 
-        fetch(window.location.pathname.replace(/\/$/, "") + "/Import", {
+        fetch(editor.getAttribute("data-import-url"), {
             method: "POST",
             body: data,
             credentials: "same-origin"
         })
-        .then(function (response) { return response.json(); })
+        .then(function (response) {
+            if (!response.ok) throw new Error("HTTP " + response.status);
+            return response.json();
+        })
         .then(function (result) {
             if (!result.ok) throw new Error(result.error || "Import failed.");
             editor.innerHTML = result.html;
